@@ -1,4 +1,4 @@
-# PB Markdown Editor
+# <img width="30" height="30" alt="markdown-editor" src="https://github.com/user-attachments/assets/47ab1fe6-0f38-43d5-b051-5dc322a06a86" /> PB Markdown Editor
 
 ![PB Markdown Editor Screenshot](pb-markdown-editor-screenshot.png)
 
