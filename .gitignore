@@ -125,3 +125,5 @@ dist
 dist/
 dist-electron/
 release/
+
+.idea
