@@ -1,0 +1,139 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  background-color: #f6f8fa;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.toolbar {
+  display: flex;
+  gap: 10px;
+  padding: 8px 16px;
+  background-color: #24292f;
+  border-bottom: 1px solid #d0d7de;
+  flex: 0 0 auto; /* 상단 고정, 크기 축소 방지 */
+  z-index: 100; /* 항상 위에 표시 */
+}
+
+.toolbar button {
+  padding: 3px 6px;
+  background-color: #24292f;
+  border: 1px solid rgba(27, 31, 36, 0.15);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  color: #24292f;
+}
+
+.toolbar button:hover {
+  background-color: #24292f;
+}
+
+.container {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  min-height: 0; /* 컨테이너가 화면 밖으로 밀리는 것 방지 */
+  min-width: 0;
+  overflow: hidden;
+}
+
+.editor-pane {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+#markdown-input {
+  flex: 1;
+  padding: 16px;
+  border: none;
+  resize: none;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  outline: none;
+  background-color: #ffffff;
+  overflow-y: auto; /* 자체 스크롤 활성화 */
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+.splitter {
+  background-color: #d0d7de;
+  cursor: col-resize;
+  width: 5px;
+  height: 100%;
+  transition: background-color 0.2s;
+  z-index: 10;
+  user-select: none;
+  flex: 0 0 auto; /* 스플리터 크기 유지 */
+}
+
+.splitter:hover, .splitter.active {
+  background-color: #0969da;
+}
+
+.container.column .splitter {
+  cursor: row-resize;
+  width: 100%;
+  height: 5px;
+}
+
+.preview-pane {
+  flex: 1;
+  overflow-y: auto; /* 미리보기 영역 스크롤 활성화 */
+  overflow-x: hidden;
+  background-color: #ffffff;
+  padding: 24px;
+  min-width: 0;
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+/* 깃허브 스타일 마크다운 CSS 일부 적용 */
+.markdown-body {
+  font-size: 16px;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.markdown-body h1, .markdown-body h2 {
+  border-bottom: 1px solid #d0d7de;
+  padding-bottom: .3em;
+}
+
+.markdown-body pre {
+  background-color: #f6f8fa;
+  border-radius: 6px;
+  padding: 16px;
+  overflow: auto;
+}
+
+.markdown-body code {
+  background-color: rgba(175, 184, 193, 0.2);
+  border-radius: 6px;
+  padding: .2em .4em;
+  font-size: 85%;
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+}
+
+.markdown-body pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+.markdown-body blockquote {
+  padding: 0 1em;
+  color: #656d76;
+  border-left: .25em solid #d0d7de;
+  margin: 0;
+}

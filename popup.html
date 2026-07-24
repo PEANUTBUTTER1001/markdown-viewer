@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Markdown Viewer</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="toolbar">
+    <button id="btn-save" title="파일로 저장">💾</button>
+    <button id="btn-toggle-layout" title="상하/좌우 레이아웃 전환">🔄</button>
+  </div>
+  <div class="container" id="main-container">
+    <div class="editor-pane" id="editor-pane">
+      <textarea id="markdown-input" placeholder="여기에 마크다운 텍스트를 입력하세요."></textarea>
+    </div>
+    <div class="splitter" id="splitter"></div>
+    <div class="preview-pane" id="preview-pane">
+      <div id="markdown-output" class="markdown-body"></div>
+    </div>
+  </div>
+
+  <script src="lib/marked.min.js"></script>
+  <script src="lib/purify.min.js"></script>
+  <script src="assets/bundle.min.js"></script>
+</body>
+</html>

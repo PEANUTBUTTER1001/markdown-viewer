@@ -1,0 +1,34 @@
+{
+  "name": "markdown-viewer",
+  "productName": "MarkdownViewer",
+  "version": "1.0.0",
+  "description": "A simple Markdown viewer and editor.",
+  "main": "index.js",
+  "scripts": {
+    "build:js": "esbuild popup.js --bundle --minify --outfile=assets/bundle.min.js --platform=node --external:electron",
+    "prestart": "npm run build:js",
+    "start": "electron .",
+    "build:portable": "npm run build:js && electron-builder --win portable && npx rimraf dist/win-unpacked dist/*.yaml dist/*.yml dist/.icon-ico",
+    "build:installer": "npm run build:js && electron-builder --win nsis && npx rimraf dist/win-unpacked dist/*.yaml dist/*.yml dist/*.blockmap dist/.icon-ico"
+  },
+  "author": "PEANUTBUTTER1001",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^43.2.0",
+    "electron-builder": "^26.15.3",
+    "esbuild": "^0.28.1"
+  },
+  "build": {
+    "appId": "com.example.markdownviewer",
+    "win": {
+      "target": ["portable", "nsis"],
+      "icon": "assets/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "assets/icon.png",
+      "uninstallerIcon": "assets/icon.png"
+    }
+  }
+}
