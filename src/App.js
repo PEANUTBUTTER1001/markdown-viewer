@@ -68,6 +68,47 @@ class App {
         }
       }
     });
+    
+    // IPC Event for double-clicking a file in OS
+    const { ipcRenderer } = require('electron');
+    ipcRenderer.on('open-file', (event, filePath) => {
+      this.handleFileOpen(filePath);
+    });
+
+    // Drag and Drop support
+    document.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+    });
+    
+    document.addEventListener('drop', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        const file = e.dataTransfer.files[0];
+        if (file.name.toLowerCase().endsWith('.md')) {
+          this.handleFileOpen(file.path);
+        } else {
+          alert('마크다운(.md) 파일만 열 수 있습니다.');
+        }
+      }
+    });
+  }
+
+  async handleFileOpen(filePath) {
+    if (!this.fileService) {
+      const FileService = require('./services/FileService');
+      this.fileService = new FileService();
+    }
+    try {
+      const content = this.fileService.readFile(filePath);
+      this.inputArea.value = content;
+      this.updatePreview();
+    } catch (err) {
+      console.error("파일 열기 실패:", err);
+      alert('파일을 열 수 없습니다.');
+    }
   }
 }
 

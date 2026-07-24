@@ -14,6 +14,13 @@ class FileService {
     }
     return false; // User canceled the dialog
   }
+
+  readFile(filePath) {
+    if (fs.existsSync(filePath)) {
+      return fs.readFileSync(filePath, 'utf-8');
+    }
+    throw new Error("FileNotFound");
+  }
 }
 
 module.exports = FileService;
