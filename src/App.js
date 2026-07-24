@@ -68,7 +68,7 @@ class App {
         }
       }
     });
-    
+
     // IPC Event for double-clicking a file in OS
     const { ipcRenderer } = require('electron');
     ipcRenderer.on('open-file', (event, filePath) => {
@@ -80,7 +80,7 @@ class App {
       e.preventDefault();
       e.stopPropagation();
     });
-    
+
     document.addEventListener('drop', (e) => {
       e.preventDefault();
       e.stopPropagation();
