@@ -1,0 +1,46 @@
+{
+  "name": "pb-markdown-editor",
+  "productName": "PB Markdown Editor",
+  "version": "1.0.0",
+  "description": "A simple Markdown viewer and editor.",
+  "main": "index.js",
+  "scripts": {
+    "prebuild-icon": "node make-icon.js",
+    "build:js": "esbuild popup.js --bundle --minify --outfile=assets/bundle.min.js --platform=node --external:electron",
+    "prestart": "npm run prebuild-icon && npm run build:js",
+    "start": "electron .",
+    "build:portable": "npm run prebuild-icon && npm run build:js && electron-builder --win portable && npx rimraf dist/win-unpacked dist/*.yaml dist/*.yml dist/.icon-ico",
+    "build:installer": "npm run prebuild-icon && npm run build:js && electron-builder --win nsis && npx rimraf dist/win-unpacked dist/*.yaml dist/*.yml dist/*.blockmap dist/.icon-ico"
+  },
+  "author": "PEANUTBUTTER1001",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^43.2.0",
+    "electron-builder": "^26.15.3",
+    "esbuild": "^0.28.1",
+    "jimp": "^0.22.10",
+    "png-to-ico": "^3.0.2"
+  },
+  "build": {
+    "appId": "io.github.peanutbutter1001.markdownviewer",
+    "win": {
+      "target": [
+        "portable",
+        "nsis"
+      ],
+      "icon": "assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "fileAssociations": [
+      {
+        "ext": "md",
+        "name": "Markdown Document",
+        "description": "Markdown Document",
+        "icon": "assets/icon.ico"
+      }
+    ]
+  }
+}
